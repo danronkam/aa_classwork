@@ -4,4 +4,7 @@ class Player
         with a space like `4 7`' 
         numbers = gets.chomp.split(' ').map(&:to_i)
     end
+
+    def valid?(position)
+    end
 end
