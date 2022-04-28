@@ -5,8 +5,32 @@
 # Example:
 #
 # all_vowel_pairs(["goat", "action", "tear", "impromptu", "tired", "europe"])   # => ["action europe", "tear impromptu"]
-def all_vowel_pairs(words)
+def vowelChecker(pair)
+    vowels = 'aeiou'
 
+    vowels.each_char do |vowel|
+        if pair.include?(vowel) != true
+            return false
+        end
+    end
+
+    true
+end
+
+def all_vowel_pairs(words)
+    pairs = []
+
+    words.each_with_index do |word1, i|
+        words.each_with_index do |word2, j|
+            pair = word1 + ' ' + word2
+
+            if vowelChecker(pair) == true && j > i
+                pairs << pair
+            end
+        end
+    end
+
+    pairs
 end
 
 
@@ -18,6 +42,14 @@ end
 # composite?(9)     # => true
 # composite?(13)    # => false
 def composite?(num)
+
+    i = 2
+    (i...num).each do |number|
+        return true if num % number == 0
+        i += 1
+    end
+
+    return false
 
 end
 
@@ -32,7 +64,14 @@ end
 # find_bigrams("the theater is empty", ["cy", "em", "ty", "ea", "oo"])  # => ["em", "ty", "ea"]
 # find_bigrams("to the moon and back", ["ck", "oo", "ha", "at"])        # => ["ck", "oo"]
 def find_bigrams(str, bigrams)
+    included = []
 
+    bigrams.each do |bigram|
+
+        included << bigram if str.include?(bigram)
+    end
+
+    included
 end
 
 class Hash
@@ -50,7 +89,16 @@ class Hash
     # hash_2.my_select { |k, v| k + 1 == v }      # => {10=>11, 5=>6, 7=>8})
     # hash_2.my_select                            # => {4=>4}
     def my_select(&prc)
+        newHash = {}
+        
+        self.each do |k , v|
+            if prc.call(k , v) == true 
+                newHash[k] = v
+            end
+        end
 
+        return newHash if newHash.length > 0
+    
     end
 end
 
