@@ -1,8 +1,33 @@
 # Write a method, least_common_multiple, that takes in two numbers and returns the smallest number that is a mutiple
-# of both of the given numbers
-def least_common_multiple(num_1, num_2)
-
+# of both of the given numbers snakecase camelcase
+def least_common_multiple(num_1, num_2)  
+    (1..num_1 * num_2).each do |multiple|
+        return multiple if multiple % num_1 == 0 && multiple % num_2 == 0
+    end
 end
+
+    #     max = [num_1, num_2].max
+#     multiple = false
+
+#     while multiple == false
+#         if max % num_1 == 0 && max % num_2 == 0
+#             multiple = true
+#             return max
+#         end
+#         max + 1
+#     end
+
+
+# end
+    
+
+#     (2...max).each do |factor|
+#         if num_1 % factor == 0 && num_2 % factor == 0
+#             return factor
+#         end
+#     end
+
+# end
 
 
 # Write a method, most_frequent_bigram, that takes in a string and returns the two adjacent letters that appear the
